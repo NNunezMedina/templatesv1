@@ -1,0 +1,288 @@
+{% style %}
+#slider-{{ section.id }} {
+  position: relative;
+  overflow: hidden;
+}
+
+#slider-{{ section.id }} .slide {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+#slider-{{ section.id }} .slide.active {
+  display: block;
+}
+
+#slider-{{ section.id }} img.desktop {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#slider-{{ section.id }} img.mobile {
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+#slider-{{ section.id }} .content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 2;
+}
+
+#slider-{{ section.id }} .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+#slider-{{ section.id }} .content h2 {
+  font-size: 2rem;
+}
+
+#slider-{{ section.id }} .content p {
+  font-size: 1.2rem;
+}
+
+#slider-{{ section.id }} .content a {
+  display: inline-block;
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+#slider-{{ section.id }} .controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+#slider-{{ section.id }} .arrow {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  padding: 0 1rem;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 4;
+}
+
+#slider-{{ section.id }} .dots {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#slider-{{ section.id }} .dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+#slider-{{ section.id }} .dot.active {
+  background: black;
+}
+
+@media screen and (max-width: 768px) {
+  #slider-{{ section.id }} .content {
+    position: static;
+    transform: none;
+    background: white;
+    color: black;
+    padding: 1rem;
+  }
+
+  #slider-{{ section.id }} .overlay {
+    display: none;
+  }
+
+  #slider-{{ section.id }} img.desktop {
+    display: none;
+  }
+
+  #slider-{{ section.id }} img.mobile {
+    display: block;
+  }
+
+  #slider-{{ section.id }} .controls {
+  transform: translateY(-50%);
+  padding: 0 10px;
+}
+}
+{% endstyle %}
+
+<div id="slider-{{ section.id }}">
+  <div class="slider-slides">
+    {% for block in section.blocks %}
+      <div class="slide{% if forloop.index0 == 0 %} active{% endif %}" data-index="{{ forloop.index0 }}">
+        {% if block.settings.bg_desktop %}
+          <img src="{{ block.settings.bg_desktop | image_url: width: 2000 }}" class="desktop" alt="Slide">
+        {% endif %}
+        {% if block.settings.bg_mobile %}
+          <img src="{{ block.settings.bg_mobile | image_url: width: 1000 }}" class="mobile" alt="Slide">
+        {% endif %}
+        <div class="overlay"></div>
+        <div
+  class="content mobile-align-{{ block.settings.text_align }}"
+  style="
+    text-align: {{ block.settings.text_align }};
+    padding-left: {{ block.settings.padding_x_desktop }}px;
+    padding-right: {{ block.settings.padding_x_desktop }}px;
+  "
+>
+
+          {% if block.settings.title != blank %}<h2>{{ block.settings.title }}</h2>{% endif %}
+          {% if block.settings.subtitle != blank %}<p>{{ block.settings.subtitle }}</p>{% endif %}
+          {% if block.settings.button_text != blank %}<a href="{{ block.settings.button_link }}">{{ block.settings.button_text }}</a>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="controls">
+    <button class="arrow left" id="prev-{{ section.id }}">&#10094;</button>
+    <button class="arrow right" id="next-{{ section.id }}">&#10095;</button>
+  </div>
+
+  <div class="dots" id="dots-{{ section.id }}">
+    {% for block in section.blocks %}
+      <span class="dot{% if forloop.index0 == 0 %} active{% endif %}" data-slide="{{ forloop.index0 }}"></span>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('#slider-{{ section.id }}');
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    // Botones
+    slider.querySelector('#prev-{{ section.id }}').addEventListener('click', () => {
+      let index = (current - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+
+    slider.querySelector('#next-{{ section.id }}').addEventListener('click', () => {
+      let index = (current + 1) % slides.length;
+      showSlide(index);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        let index = parseInt(dot.dataset.slide);
+        showSlide(index);
+      });
+    });
+
+    // Soporte para swipe (touch y mouse)
+    let startX = 0;
+    let isDragging = false;
+
+    function handleSwipeStart(e) {
+      isDragging = true;
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function handleSwipeMove(e) {
+      if (!isDragging) return;
+      const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+      const diffX = currentX - startX;
+
+      if (Math.abs(diffX) > 50) {
+        isDragging = false;
+        if (diffX > 0) {
+          // Swipe derecha
+          let index = (current - 1 + slides.length) % slides.length;
+          showSlide(index);
+        } else {
+          // Swipe izquierda
+          let index = (current + 1) % slides.length;
+          showSlide(index);
+        }
+      }
+    }
+
+    function handleSwipeEnd() {
+      isDragging = false;
+    }
+
+    const swipeTarget = slider.querySelector('.slider-slides');
+    swipeTarget.addEventListener('touchstart', handleSwipeStart);
+    swipeTarget.addEventListener('touchmove', handleSwipeMove);
+    swipeTarget.addEventListener('touchend', handleSwipeEnd);
+
+    swipeTarget.addEventListener('mousedown', handleSwipeStart);
+    swipeTarget.addEventListener('mousemove', handleSwipeMove);
+    swipeTarget.addEventListener('mouseup', handleSwipeEnd);
+    swipeTarget.addEventListener('mouseleave', handleSwipeEnd);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "C BG Slider",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+  { "type": "image_picker", "id": "bg_desktop", "label": "Imagen desktop" },
+  { "type": "image_picker", "id": "bg_mobile", "label": "Imagen mobile" },
+  { "type": "text", "id": "title", "label": "Título" },
+  { "type": "text", "id": "subtitle", "label": "Subtítulo" },
+  { "type": "text", "id": "button_text", "label": "Texto del botón" },
+  { "type": "url", "id": "button_link", "label": "Enlace del botón" },
+  {
+    "type": "select",
+    "id": "text_align",
+    "label": "Alineación del texto",
+    "default": "center",
+    "options": [
+      { "value": "left", "label": "Izquierda" },
+      { "value": "center", "label": "Centro" },
+      { "value": "right", "label": "Derecha" }
+    ]
+  },
+  { "type": "range", "id": "padding_x_desktop", "label": "Padding lateral Desktop", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 40 },
+  { "type": "range", "id": "padding_x_mobile", "label": "Padding lateral Mobile", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 20 }
+]
+    }
+  ],
+  "presets": [
+    { "name": "C BG Slider" }
+  ]
+}
+{% endschema %}
