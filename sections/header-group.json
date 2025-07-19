@@ -11,6 +11,22 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "c_marquee_header_eQ6D43": {
+      "type": "c-marquee-header",
+      "name": "C Marquee Header",
+      "settings": {
+        "text_one": "Envío gratis a todo el Perú",
+        "text_two": "Descuento del 15% por apertura",
+        "text_three": "Compra segura con garantía",
+        "bg_color": "#ffd5f7",
+        "text_color": "#000000",
+        "scroll_speed": 60,
+        "text_spacing": 24,
+        "margin_top": 2,
+        "margin_bottom": 2,
+        "font_size": 28
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -56,6 +72,7 @@
     }
   },
   "order": [
+    "c_marquee_header_eQ6D43",
     "announcement-bar",
     "header"
   ]
