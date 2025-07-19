@@ -48,20 +48,31 @@
 }
 
 #slider-{{ section.id }} .content h2 {
-  font-size: 2rem;
+  font-size: {{ section.settings.title_font_size_desktop }}px;
+  margin:0 0 2px 0;
+  line-height: normal;
 }
 
 #slider-{{ section.id }} .content p {
-  font-size: 1.2rem;
+  font-size: {{ section.settings.subtitle_font_size_desktop }}px;
+  margin:0 0 2px 0;
+  line-height: normal;
 }
 
 #slider-{{ section.id }} .content a {
   display: inline-block;
-  background: white;
-  color: black;
+  background: {{ section.settings.button_bg_color }};
+  color: {{ section.settings.button_text_color }};
   padding: 10px 20px;
-  margin-top: 10px;
+  margin-top: 16px;
   text-decoration: none;
+  border-radius: {{ section.settings.button_radius }}px;
+  transition: all 0.3s ease;
+}
+
+#slider-{{ section.id }} .content a:hover {
+  background: {{ section.settings.button_bg_hover }};
+  color: {{ section.settings.button_text_hover }};
 }
 
 #slider-{{ section.id }} .controls {
@@ -78,7 +89,7 @@
   font-size: 2rem;
   background: none;
   border: none;
-  color: white;
+  color: {{ section.settings.arrow_color }};
   padding: 0 1rem;
   cursor: pointer;
   pointer-events: all;
@@ -93,7 +104,7 @@
 #slider-{{ section.id }} .dot {
   width: 10px;
   height: 10px;
-  background: #ccc;
+  background: {{ section.settings.dot_color }};
   border-radius: 50%;
   display: inline-block;
   margin: 0 5px;
@@ -101,8 +112,27 @@
 }
 
 #slider-{{ section.id }} .dot.active {
-  background: black;
+  background: {{ section.settings.dot_active_color }};
 }
+
+#slider-{{ section.id }} .desktop-align-left {
+  text-align: left;
+}
+
+#slider-{{ section.id }} .desktop-align-center {
+  text-align: center;
+}
+
+#slider-{{ section.id }} .desktop-align-right {
+  text-align: right;
+}
+
+{% for i in (0..100) %}
+  #slider-{{ section.id }} .desktop-padding-{{ i }} {
+    padding-left: {{ i }}px;
+    padding-right: {{ i }}px;
+  }
+{% endfor %}
 
 @media screen and (max-width: 768px) {
   #slider-{{ section.id }} .content {
@@ -129,6 +159,36 @@
   transform: translateY(-50%);
   padding: 0 10px;
 }
+ 
+#slider-{{ section.id }} .mobile-align-left {
+    text-align: left;
+  }
+
+  #slider-{{ section.id }} .mobile-align-center {
+    text-align: center;
+  }
+
+  #slider-{{ section.id }} .mobile-align-right {
+    text-align: right;
+  }
+
+  #slider-{{ section.id }} .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #slider-{{ section.id }} .content h2 {
+    font-size: {{ section.settings.title_font_size_mobile }}px;
+  }
+
+  #slider-{{ section.id }} .content p {
+    font-size: {{ section.settings.subtitle_font_size_mobile }}px;
+    margin:10px 0 8px 0;
+  }
+
+  #slider-{{ section.id }} .content a {
+  margin-top: 8px;
+}
 }
 {% endstyle %}
 
@@ -144,14 +204,11 @@
         {% endif %}
         <div class="overlay"></div>
         <div
-  class="content mobile-align-{{ block.settings.text_align }}"
-  style="
-    text-align: {{ block.settings.text_align }};
-    padding-left: {{ block.settings.padding_x_desktop }}px;
-    padding-right: {{ block.settings.padding_x_desktop }}px;
-  "
->
-
+            class="content
+                desktop-align-{{ block.settings.text_align }}
+                mobile-align-{{ block.settings.text_align_mobile }}
+                desktop-padding-{{ block.settings.padding_x_desktop }}"
+            >
           {% if block.settings.title != blank %}<h2>{{ block.settings.title }}</h2>{% endif %}
           {% if block.settings.subtitle != blank %}<p>{{ block.settings.subtitle }}</p>{% endif %}
           {% if block.settings.button_text != blank %}<a href="{{ block.settings.button_link }}">{{ block.settings.button_text }}</a>{% endif %}
@@ -254,6 +311,100 @@
 {% schema %}
 {
   "name": "C BG Slider",
+  "settings": [
+  {
+    "type": "color",
+    "id": "arrow_color",
+    "label": "Color de flechas",
+    "default": "#ffffff"
+  },
+  {
+  "type": "color",
+  "id": "dot_color",
+  "label": "Color de los dots",
+  "default": "#ccc"
+   },
+  {
+  "type": "color",
+  "id": "dot_active_color",
+  "label": "Color del dot activo",
+  "default": "#000000"
+   },
+   {
+  "type": "color",
+  "id": "button_bg_color",
+  "label": "Color de fondo del botón",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "button_text_color",
+  "label": "Color del texto del botón",
+  "default": "#000000"
+},
+{
+  "type": "range",
+  "id": "button_radius",
+  "label": "Bordes redondeados",
+  "min": 4,
+  "max": 48,
+  "step": 4,
+  "unit": "px",
+  "default": 12
+},
+{
+  "type": "color",
+  "id": "button_bg_hover",
+  "label": "Color de fondo hover del botón",
+  "default": "#000000"
+},
+{
+  "type": "color",
+  "id": "button_text_hover",
+  "label": "Color del texto hover del botón",
+  "default": "#ffffff"
+},
+{
+  "type": "range",
+  "id": "title_font_size_desktop",
+  "label": "Tamaño título en desktop",
+  "min": 10,
+  "max": 80,
+  "step": 2,
+  "unit": "px",
+  "default": 32
+},
+{
+  "type": "range",
+  "id": "title_font_size_mobile",
+  "label": "Tamaño título en mobile",
+  "min": 10,
+  "max": 80,
+  "step": 2,
+  "unit": "px",
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "subtitle_font_size_desktop",
+  "label": "Tamaño subtítulo en desktop",
+  "min": 10,
+  "max": 60,
+  "step": 2,
+  "unit": "px",
+  "default": 18
+},
+{
+  "type": "range",
+  "id": "subtitle_font_size_mobile",
+  "label": "Tamaño subtítulo en mobile",
+  "min": 10,
+  "max": 60,
+  "step": 2,
+  "unit": "px",
+  "default": 16
+},
+],
   "blocks": [
     {
       "type": "slide",
@@ -268,7 +419,7 @@
   {
     "type": "select",
     "id": "text_align",
-    "label": "Alineación del texto",
+    "label": "Alineación del texto (desktop)",
     "default": "center",
     "options": [
       { "value": "left", "label": "Izquierda" },
@@ -276,10 +427,29 @@
       { "value": "right", "label": "Derecha" }
     ]
   },
-  { "type": "range", "id": "padding_x_desktop", "label": "Padding lateral Desktop", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 40 },
-  { "type": "range", "id": "padding_x_mobile", "label": "Padding lateral Mobile", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 20 }
+  {
+  "type": "select",
+  "id": "text_align_mobile",
+  "label": "Alineación del texto (mobile)",
+  "default": "center",
+  "options": [
+    { "value": "left", "label": "Izquierda" },
+    { "value": "center", "label": "Centro" },
+    { "value": "right", "label": "Derecha" }
+  ]
+},
+  {
+  "type": "range",
+  "id": "padding_x_desktop",
+  "label": "Padding lateral Desktop",
+  "min": 0,
+  "max": 100,
+  "step": 5,
+  "unit": "px",
+  "default": 40
+},
 ]
-    }
+    },
   ],
   "presets": [
     { "name": "C BG Slider" }

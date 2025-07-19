@@ -89,8 +89,8 @@
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
-            "padding_x_desktop": 60,
-            "padding_x_mobile": 100
+            "text_align_mobile": "center",
+            "padding_x_desktop": 45
           }
         },
         "slide_zHGKCF": {
@@ -103,8 +103,8 @@
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
-            "padding_x_desktop": 40,
-            "padding_x_mobile": 20
+            "text_align_mobile": "center",
+            "padding_x_desktop": 45
           }
         }
       },
@@ -113,7 +113,20 @@
         "slide_zHGKCF"
       ],
       "name": "C BG Slider",
-      "settings": {}
+      "settings": {
+        "arrow_color": "#ffffff",
+        "dot_color": "#f3f3f3",
+        "dot_active_color": "#242833",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_radius": 8,
+        "button_bg_hover": "#ffffff",
+        "button_text_hover": "#000000",
+        "title_font_size_desktop": 48,
+        "title_font_size_mobile": 20,
+        "subtitle_font_size_desktop": 24,
+        "subtitle_font_size_mobile": 16
+      }
     }
   },
   "order": [
