@@ -77,7 +77,7 @@
 
 #slider-{{ section.id }} .controls {
   position: absolute;
-  top: 50%;
+  top: {{ section.settings.controls_top_desktop }}%;
   width: 100%;
   z-index: 3;
   display: flex;
@@ -134,6 +134,23 @@
   }
 {% endfor %}
 
+#slider-{{ section.id }} .stars-wrapper {
+  display: flex;
+  align-items: center;
+  gap:12px;
+}
+
+#slider-{{ section.id }} .stars {
+  display: inline-flex;
+  gap: 4px;
+}
+
+#slider-{{ section.id }} .star-svg {
+  fill: currentColor !important;
+  width: 20px;
+  height: 20px;
+}
+
 @media screen and (max-width: 768px) {
   #slider-{{ section.id }} .content {
     position: static;
@@ -158,6 +175,7 @@
   #slider-{{ section.id }} .controls {
   transform: translateY(-50%);
   padding: 0 10px;
+  top: {{ section.settings.controls_top_mobile }}%;
 }
  
 #slider-{{ section.id }} .mobile-align-left {
@@ -189,6 +207,20 @@
   #slider-{{ section.id }} .content a {
   margin-top: 8px;
 }
+
+#slider-{{ section.id }} .mobile-direction-row {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #slider-{{ section.id }} .mobile-direction-column {
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
 }
 {% endstyle %}
 
@@ -209,6 +241,26 @@
                 mobile-align-{{ block.settings.text_align_mobile }}
                 desktop-padding-{{ block.settings.padding_x_desktop }}"
             >
+                {% if block.settings.show_stars %}
+                <div class="stars-wrapper mobile-direction-{{ block.settings.star_layout_mobile }}">
+                    <div class="stars 
+                        desktop-align-{{ block.settings.text_align }} 
+                        mobile-align-{{ block.settings.text_align_mobile }}" 
+                        aria-label="Valoración 5 estrellas"
+                        style="color: {{ block.settings.star_color }}">
+                        
+                        {% for i in (1..5) %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 0 24 24" class="star-svg">
+                            <path d="M12 .587l3.668 7.568L24 9.748l-6 5.849L19.335 24 12 19.897 4.665 24 6 15.597 0 9.748l8.332-1.593z"/>
+                        </svg>
+                        {% endfor %}
+                    </div>
+
+                    {% if block.settings.star_text != blank %}
+                        <span class="star-text" style="color: {{ block.settings.star_text_color }}">{{ block.settings.star_text }}</span>
+                        {% endif %}
+                </div>
+                {% endif %}
           {% if block.settings.title != blank %}<h2>{{ block.settings.title }}</h2>{% endif %}
           {% if block.settings.subtitle != blank %}<p>{{ block.settings.subtitle }}</p>{% endif %}
           {% if block.settings.button_text != blank %}<a href="{{ block.settings.button_link }}">{{ block.settings.button_text }}</a>{% endif %}
@@ -449,7 +501,27 @@
   "max": 10,
   "step": 1,
   "default": 5
-}
+},
+{
+  "type": "range",
+  "id": "controls_top_desktop",
+  "label": "Posición vertical flechas (Desktop)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 50
+},
+{
+  "type": "range",
+  "id": "controls_top_mobile",
+  "label": "Posición vertical flechas (Mobile)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 50
+},
 ],
   "blocks": [
     {
@@ -493,6 +565,40 @@
   "step": 5,
   "unit": "px",
   "default": 40
+},
+{
+  "type": "color",
+  "id": "star_text_color",
+  "label": "Color del texto de estrellas",
+  "default": "#000000"
+},
+{
+  "type": "color",
+  "id": "star_color",
+  "label": "Color de las estrellas",
+  "default": "#000000"
+},
+{
+  "type": "checkbox",
+  "id": "show_stars",
+  "label": "Mostrar estrellas",
+  "default": false
+},
+{
+  "type": "text",
+  "id": "star_text",
+  "label": "Texto junto a las estrellas",
+  "default": "6,850+ 5 Star Reviews"
+},
+{
+  "type": "select",
+  "id": "star_layout_mobile",
+  "label": "Dirección de las estrellas en mobile",
+  "default": "row",
+  "options": [
+    { "value": "row", "label": "Fila" },
+    { "value": "column", "label": "Columna" }
+  ]
 },
 ]
     },
