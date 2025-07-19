@@ -234,7 +234,15 @@
     const slider = document.querySelector('#slider-{{ section.id }}');
     const slides = slider.querySelectorAll('.slide');
     const dots = slider.querySelectorAll('.dot');
+    const prevBtn = slider.querySelector('#prev-{{ section.id }}');
+    const nextBtn = slider.querySelector('#next-{{ section.id }}');
     let current = 0;
+    let autoplayInterval;
+
+    const sliderSettings = {
+      autoplay: {{ section.settings.autoplay | json }},
+      speed: {{ section.settings.autoplay_speed | default: 5 }} * 1000
+    };
 
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -246,25 +254,36 @@
       current = index;
     }
 
-    // Botones
-    slider.querySelector('#prev-{{ section.id }}').addEventListener('click', () => {
-      let index = (current - 1 + slides.length) % slides.length;
-      showSlide(index);
-    });
-
-    slider.querySelector('#next-{{ section.id }}').addEventListener('click', () => {
+    function nextSlide() {
       let index = (current + 1) % slides.length;
       showSlide(index);
+    }
+
+    function prevSlide() {
+      let index = (current - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    // Botones
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoplay();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoplay();
     });
 
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
         let index = parseInt(dot.dataset.slide);
         showSlide(index);
+        resetAutoplay();
       });
     });
 
-    // Soporte para swipe (touch y mouse)
+    // Swipe
     let startX = 0;
     let isDragging = false;
 
@@ -281,14 +300,11 @@
       if (Math.abs(diffX) > 50) {
         isDragging = false;
         if (diffX > 0) {
-          // Swipe derecha
-          let index = (current - 1 + slides.length) % slides.length;
-          showSlide(index);
+          prevSlide();
         } else {
-          // Swipe izquierda
-          let index = (current + 1) % slides.length;
-          showSlide(index);
+          nextSlide();
         }
+        resetAutoplay();
       }
     }
 
@@ -300,11 +316,26 @@
     swipeTarget.addEventListener('touchstart', handleSwipeStart);
     swipeTarget.addEventListener('touchmove', handleSwipeMove);
     swipeTarget.addEventListener('touchend', handleSwipeEnd);
-
     swipeTarget.addEventListener('mousedown', handleSwipeStart);
     swipeTarget.addEventListener('mousemove', handleSwipeMove);
     swipeTarget.addEventListener('mouseup', handleSwipeEnd);
     swipeTarget.addEventListener('mouseleave', handleSwipeEnd);
+
+    // Autoplay
+    function startAutoplay() {
+      if (sliderSettings.autoplay) {
+        autoplayInterval = setInterval(nextSlide, sliderSettings.speed);
+      }
+    }
+
+    function resetAutoplay() {
+      if (sliderSettings.autoplay) {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+      }
+    }
+
+    startAutoplay();
   });
 </script>
 
@@ -404,6 +435,21 @@
   "unit": "px",
   "default": 16
 },
+{
+  "type": "checkbox",
+  "id": "autoplay",
+  "label": "Activar autoplay",
+  "default": false
+},
+{
+  "type": "range",
+  "id": "autoplay_speed",
+  "label": "Velocidad de autoplay (segundos)",
+  "min": 2,
+  "max": 10,
+  "step": 1,
+  "default": 5
+}
 ],
   "blocks": [
     {

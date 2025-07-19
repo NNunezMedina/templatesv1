@@ -125,7 +125,9 @@
         "title_font_size_desktop": 48,
         "title_font_size_mobile": 20,
         "subtitle_font_size_desktop": 24,
-        "subtitle_font_size_mobile": 16
+        "subtitle_font_size_mobile": 16,
+        "autoplay": false,
+        "autoplay_speed": 5
       }
     }
   },
