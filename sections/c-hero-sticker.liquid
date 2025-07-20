@@ -1,0 +1,95 @@
+<style>
+  #shopify-section-{{ section.id }}.c-background-box-section {
+    position: relative;
+  }
+
+  .c-background-box-section__wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 500px; /* ajusta la altura según necesites */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (max-width: 768px) {
+    .c-background-box-section__wrapper {
+      background-image: url({{ section.settings.bg_image_mobile | image_url: width: 1000 }});
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .c-background-box-section__wrapper {
+      background-image: url({{ section.settings.bg_image_desktop | image_url: width: 2000 }});
+    }
+  }
+
+  .c-background-box-section__box {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    padding: 2rem;
+    background-color: {{ section.settings.box_bg_color }};
+    border: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};
+    color: black;
+    text-align: center;
+    z-index: 2;
+  }
+</style>
+
+
+<div class="c-background-box-section">
+  <div class="c-background-box-section__wrapper">
+    <div class="c-background-box-section__box">
+      <h2>Contenido encima del fondo</h2>
+      <p>Puedes reemplazar esto con cualquier contenido adicional.</p>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "C HERO STICKER",
+  "settings": [
+     {
+      "type": "image_picker",
+      "id": "bg_image_desktop",
+      "label": "Imagen de fondo para desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Imagen de fondo para mobile"
+    },
+    {
+      "type": "color",
+      "id": "box_bg_color",
+      "label": "Color de fondo del recuadro",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color del borde del recuadro",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Grosor del borde (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "presets": [
+    {
+      "name": "C HERO STICKER"
+    }
+  ]
+}
+{% endschema %}
+
