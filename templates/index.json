@@ -105,12 +105,70 @@
     },
     "c_hero_sticker_AEMcNW": {
       "type": "c-hero-sticker",
+      "blocks": {
+        "sticker_BEqgVy": {
+          "type": "sticker",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_jul_2025_02_04_52_p.m..png",
+            "link": ""
+          }
+        },
+        "sticker_VrDNPP": {
+          "type": "sticker",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_jul_2025_02_08_55_p.m..png",
+            "link": ""
+          }
+        },
+        "sticker_8xLeXB": {
+          "type": "sticker",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_jul_2025_02_11_35_p.m..png",
+            "link": ""
+          }
+        },
+        "sticker_x6PEhn": {
+          "type": "sticker",
+          "settings": {
+            "image": "shopify://shop_images/sticker_4.png",
+            "link": ""
+          }
+        },
+        "sticker_TVDnPA": {
+          "type": "sticker",
+          "settings": {
+            "image": "shopify://shop_images/sticker_3.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "sticker_BEqgVy",
+        "sticker_VrDNPP",
+        "sticker_8xLeXB",
+        "sticker_x6PEhn",
+        "sticker_TVDnPA"
+      ],
       "name": "C HERO STICKERS",
       "settings": {
         "bg_image_desktop": "shopify://shop_images/ChatGPT_Image_20_jul_2025_11_44_26_a.m..png",
+        "bg_image_mobile": "shopify://shop_images/ChatGPT_Image_20_jul_2025_12_26_17_p.m..png",
         "box_bg_color": "#fffaed",
         "border_color": "#334fb4",
-        "border_width": 2
+        "border_width": 2,
+        "border_radius": 20,
+        "border_top_width": 2,
+        "border_right_width": 8,
+        "border_bottom_width": 8,
+        "border_left_width": 2,
+        "content_vertical_align": "center",
+        "text_align": "center",
+        "title": "Texto de ejemplo",
+        "subtitle": "Subtítulo de ejemplo",
+        "button_1_text": "Botón 1",
+        "button_1_link": "",
+        "button_2_text": "Botón 2",
+        "button_2_link": ""
       }
     }
   },

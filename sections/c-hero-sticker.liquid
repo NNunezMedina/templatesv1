@@ -6,7 +6,7 @@
   .c-background-box-section__wrapper {
     position: relative;
     width: 100%;
-    min-height: 500px; /* ajusta la altura según necesites */
+    min-height: 500px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -31,10 +31,214 @@
     right: 10%;
     padding: 2rem;
     background-color: {{ section.settings.box_bg_color }};
-    border: {{ section.settings.border_width }}px solid {{ section.settings.border_color }};
+    border-style: solid;
+    border-color: {{ section.settings.border_color }};
+    border-top-width: {{ section.settings.border_top_width }}px;
+    border-right-width: {{ section.settings.border_right_width }}px;
+    border-bottom-width: {{ section.settings.border_bottom_width }}px;
+    border-left-width: {{ section.settings.border_left_width }}px;
+    border-radius: {{ section.settings.border_radius }}px;
     color: black;
-    text-align: center;
     z-index: 2;
+  }
+
+  .c-box-inner {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+  }
+
+  .c-box-left,
+  .c-box-right {
+    width: 50%;
+  }
+
+  .c-box-left {
+    text-align: {{ section.settings.text_align }};
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ section.settings.content_vertical_align }};
+    {% if section.settings.text_align == 'left' %}
+      align-items: flex-start;
+    {% elsif section.settings.text_align == 'right' %}
+      align-items: flex-end;
+    {% else %}
+      align-items: center;
+    {% endif %}
+  }
+
+  .c-box-left h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .c-box-left p {
+    margin-bottom: 1rem;
+  }
+
+  .c-box-buttons a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0.5rem 1rem;
+    background: black;
+    color: white;
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 769px) {
+  .c-stickers {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Ajusta si deseas más espacio */
+  }
+
+  .c-sticker {
+    position: absolute;
+    width: 160px;
+    height: auto;
+  }
+
+  .c-sticker-1 {
+    top: 10px;
+    left: 5%;
+  }
+
+  .c-sticker-2 {
+    top: 10px;
+    right: 5%;
+  }
+
+  .c-sticker-3 {
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .c-sticker-4 {
+    bottom: 10px;
+    left: 10%;
+  }
+
+  .c-sticker-5 {
+    bottom: 10px;
+    right: 10%;
+  }
+
+  .c-sticker img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+  /* MOBILE Slider */
+  .c-sticker-slider-wrapper {
+    display: none;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .c-stickers-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 250px;
+    scrollbar-width: none;
+  }
+
+  .c-stickers-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .c-sticker-slider-wrapper .c-sticker {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .c-sticker-slider-wrapper .c-sticker img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .sticker-arrows {
+    display: none;
+  }
+
+  .sticker-dots {
+    display: none;
+  }
+
+  /* MOBILE Overrides */
+  @media screen and (max-width: 768px) {
+    .c-box-inner {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    .c-box-right .c-stickers {
+      display: none;
+    }
+
+    .c-sticker-slider-wrapper {
+      display: flex;
+    }
+
+    .sticker-arrows {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: -24px;
+      right: -24px;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 3;
+      pointer-events: none;
+      padding: 0 12px;
+    }
+
+    .sticker-arrow {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .sticker-dots {
+      display: flex !important;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 1rem;
+      z-index: 3;
+      position: relative;
+    }
+
+    .sticker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .sticker-dot.active {
+      background: black;
+      opacity: 1;
+    }
+
+    .c-box-right {
+      width: 100%;
+    }
   }
 </style>
 
@@ -42,18 +246,121 @@
 <div class="c-background-box-section">
   <div class="c-background-box-section__wrapper">
     <div class="c-background-box-section__box">
-      <h2>Contenido encima del fondo</h2>
-      <p>Puedes reemplazar esto con cualquier contenido adicional.</p>
+      <div class="c-box-inner">
+        <div class="c-box-left">
+          <h2>{{ section.settings.title }}</h2>
+          <p>{{ section.settings.subtitle }}</p>
+          <div class="c-box-buttons">
+            <a href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
+            <a href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
+          </div>
+        </div>
+        <div class="c-box-right">
+          <div class="c-stickers">
+            {% for block in section.blocks %}
+                <div class="c-sticker c-sticker-{{ forloop.index }}">
+                <a href="{{ block.settings.link }}">
+                    <img src="{{ block.settings.image | image_url }}" alt="Sticker {{ forloop.index }}">
+                </a>
+                </div>
+            {% endfor %}
+            </div>
+
+          <div class="c-sticker-slider-wrapper" id="sticker-slider-{{ section.id }}">
+            <div class="sticker-arrows">
+              <button class="sticker-arrow left" aria-label="Anterior">‹</button>
+              <button class="sticker-arrow right" aria-label="Siguiente">›</button>
+            </div>
+            <div class="c-stickers-track">
+              {% for block in section.blocks %}
+                {% if block.type == 'sticker' %}
+                  <a href="{{ block.settings.link }}" class="c-sticker">
+                    <img src="{{ block.settings.image | image_url: width: 200 }}" alt="Sticker {{ forloop.index }}">
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="sticker-dots"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sectionId = "{{ section.id }}";
+    const wrapper = document.getElementById(`sticker-slider-${sectionId}`);
+    if (!wrapper) return;
+
+    const track = wrapper.querySelector(".c-stickers-track");
+    const slides = wrapper.querySelectorAll(".c-sticker");
+    const dotsContainer = wrapper.querySelector(".sticker-dots");
+    const leftArrow = wrapper.querySelector(".sticker-arrow.left");
+    const rightArrow = wrapper.querySelector(".sticker-arrow.right");
+
+    let currentIndex = 0;
+
+    function updateSlider() {
+      const scrollTo = slides[currentIndex].offsetLeft;
+      track.scrollTo({ left: scrollTo, behavior: 'smooth' });
+      updateDots();
+    }
+
+    function updateDots() {
+      dotsContainer.querySelectorAll(".sticker-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    // Crear dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement("div");
+      dot.className = "sticker-dot" + (i === 0 ? " active" : "");
+      dot.innerHTML = "&nbsp;";
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateSlider();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    // Flechas
+    leftArrow.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+
+    rightArrow.addEventListener("click", () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+
+    // Swipe scroll tracking
+    track.addEventListener("scroll", () => {
+      const scrollLeft = track.scrollLeft;
+      const slideWidth = slides[0].offsetWidth;
+      const newIndex = Math.round(scrollLeft / slideWidth);
+      if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateDots();
+      }
+    });
+
+    updateSlider();
+  });
+</script>
 
 {% schema %}
 {
   "name": "C HERO STICKER",
   "settings": [
-     {
+    {
       "type": "image_picker",
       "id": "bg_image_desktop",
       "label": "Imagen de fondo para desktop"
@@ -83,8 +390,128 @@
       "max": 10,
       "step": 1,
       "default": 2
+    },
+    {
+  "type": "range",
+  "id": "border_radius",
+  "label": "Border radius (radio de borde)",
+  "min": 0,
+  "max": 50,
+  "step": 1,
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "border_top_width",
+  "label": "Grosor del borde superior (px)",
+  "min": 0,
+  "max": 20,
+  "step": 1,
+  "default": 2
+},
+{
+  "type": "range",
+  "id": "border_right_width",
+  "label": "Grosor del borde derecho (px)",
+  "min": 0,
+  "max": 20,
+  "step": 1,
+  "default": 2
+},
+{
+  "type": "range",
+  "id": "border_bottom_width",
+  "label": "Grosor del borde inferior (px)",
+  "min": 0,
+  "max": 20,
+  "step": 1,
+  "default": 2
+},
+{
+  "type": "range",
+  "id": "border_left_width",
+  "label": "Grosor del borde izquierdo (px)",
+  "min": 0,
+  "max": 20,
+  "step": 1,
+  "default": 2
+},
+{
+  "type": "select",
+  "id": "content_vertical_align",
+  "label": "Alineación vertical del contenido",
+  "default": "flex-start",
+  "options": [
+    { "value": "flex-start", "label": "Arriba" },
+    { "value": "center", "label": "Centro" },
+    { "value": "flex-end", "label": "Abajo" }
+  ]
+},
+    {
+        "type": "select",
+        "id": "text_align",
+        "label": "Alineación del contenido",
+        "default": "left",
+        "options": [
+            { "value": "left", "label": "Izquierda" },
+            { "value": "center", "label": "Centro" },
+            { "value": "right", "label": "Derecha" }
+        ]
+        },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Texto de ejemplo"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Subtítulo de ejemplo"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Texto del botón 1",
+      "default": "Botón 1"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Enlace del botón 1"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Texto del botón 2",
+      "default": "Botón 2"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Enlace del botón 2"
     }
   ],
+  "blocks": [
+    {
+      "type": "sticker",
+      "name": "Sticker",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen del sticker"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace del sticker"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
   "presets": [
     {
       "name": "C HERO STICKER"
