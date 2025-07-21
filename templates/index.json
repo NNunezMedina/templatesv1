@@ -15,10 +15,10 @@
         "slide_L64iaU": {
           "type": "slide",
           "settings": {
-            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.07_PM_1_1.png",
-            "bg_mobile": "shopify://shop_images/iPhone_13_mini_-_3_1_2.png",
-            "title": "SMOOTH",
-            "subtitle": "New Redefine Rejuvanation Mask",
+            "bg_desktop": "shopify://shop_images/Sin_titulo-1.png",
+            "bg_mobile": "shopify://shop_images/celular1.png",
+            "title": "Smooth Summer Freeze + Boost Shine",
+            "subtitle": "For Hair That Defies Summer Heat and Humidity",
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
@@ -26,18 +26,20 @@
             "padding_x_desktop": 95,
             "star_text_color": "#121212",
             "star_color": "#121212",
-            "show_stars": true,
+            "show_stars": false,
             "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column"
+            "star_layout_mobile": "column",
+            "star_font_size": 16,
+            "star_font_weight": "600"
           }
         },
         "slide_zHGKCF": {
           "type": "slide",
           "settings": {
-            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.08_PM_1.png",
-            "bg_mobile": "shopify://shop_images/iPhone_13_mini_-_4_1_f306dbef-fe0c-48f3-9a6f-b161eb86d69d.png",
-            "title": "RADIANT",
-            "subtitle": "New Reverse Radiance Mask",
+            "bg_desktop": "shopify://shop_images/fondo_2.png",
+            "bg_mobile": "shopify://shop_images/celular2.png",
+            "title": "Build Your Healthy  Skin Routine",
+            "subtitle": "For The Best Glowing Skin For Summer",
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
@@ -45,17 +47,20 @@
             "padding_x_desktop": 95,
             "star_text_color": "#000000",
             "star_color": "#000000",
-            "show_stars": true,
+            "show_stars": false,
             "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column"
+            "star_layout_mobile": "column",
+            "star_font_size": 16,
+            "star_font_weight": "600"
           }
         },
         "slide_hRXBdq": {
           "type": "slide",
           "settings": {
-            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.08_PM_1_1.png",
-            "title": "CLEAR",
-            "subtitle": "New Unblemish Clarifying Mask",
+            "bg_desktop": "shopify://shop_images/fondo_3.png",
+            "bg_mobile": "shopify://shop_images/lalala.png",
+            "title": "Healthy Skin Defies Destination",
+            "subtitle": "Smootheness, Moisturazation & Elasticity",
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
@@ -63,54 +68,41 @@
             "padding_x_desktop": 95,
             "star_text_color": "#000000",
             "star_color": "#000000",
-            "show_stars": true,
+            "show_stars": false,
             "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column"
-          }
-        },
-        "slide_bk8K7z": {
-          "type": "slide",
-          "settings": {
-            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.07_PM_1.png",
-            "title": "CALM",
-            "subtitle": "New Soothe Rescue Mask",
-            "button_text": "SHOP NOW",
-            "button_link": "",
-            "text_align": "left",
-            "text_align_mobile": "center",
-            "padding_x_desktop": 95,
-            "star_text_color": "#000000",
-            "star_color": "#000000",
-            "show_stars": true,
-            "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column"
+            "star_layout_mobile": "column",
+            "star_font_size": 16,
+            "star_font_weight": "600"
           }
         }
       },
       "block_order": [
         "slide_L64iaU",
         "slide_zHGKCF",
-        "slide_hRXBdq",
-        "slide_bk8K7z"
+        "slide_hRXBdq"
       ],
       "name": "C BG Slider",
       "settings": {
-        "arrow_color": "#ffffff",
+        "arrow_color": "#121212",
         "dot_color": "#f3f3f3",
         "dot_active_color": "#242833",
-        "button_bg_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_radius": 8,
-        "button_bg_hover": "#ffffff",
-        "button_text_hover": "#000000",
+        "button_bg_color": "#fefaf7",
+        "button_text_color": "#121212",
+        "button_radius": 24,
+        "button_bg_hover": "#000000",
+        "button_text_hover": "#fefaf7",
         "title_font_size_desktop": 48,
         "title_font_size_mobile": 20,
-        "subtitle_font_size_desktop": 24,
+        "subtitle_font_size_desktop": 18,
         "subtitle_font_size_mobile": 16,
         "autoplay": true,
-        "autoplay_speed": 3,
+        "autoplay_speed": 2,
         "controls_top_desktop": 40,
-        "controls_top_mobile": 35
+        "controls_top_mobile": 35,
+        "subtitle_color": "#121212",
+        "title_color": "#121212",
+        "title_font_weight": "700",
+        "button_border_color": "#000000"
       }
     },
     "featured_collection": {
