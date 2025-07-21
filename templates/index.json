@@ -15,10 +15,10 @@
         "slide_L64iaU": {
           "type": "slide",
           "settings": {
-            "bg_desktop": "shopify://shop_images/image_53.png",
+            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.07_PM_1_1.png",
             "bg_mobile": "shopify://shop_images/iPhone_13_mini_-_3_1_2.png",
-            "title": "New Collection",
-            "subtitle": "Don't miss out!",
+            "title": "SMOOTH",
+            "subtitle": "New Redefine Rejuvanation Mask",
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
@@ -34,10 +34,46 @@
         "slide_zHGKCF": {
           "type": "slide",
           "settings": {
-            "bg_desktop": "shopify://shop_images/ChatGPT_Image_20_jul_2025_07_15_02_p.m._1_2.png",
+            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.08_PM_1.png",
             "bg_mobile": "shopify://shop_images/iPhone_13_mini_-_4_1_f306dbef-fe0c-48f3-9a6f-b161eb86d69d.png",
-            "title": "Don't miss out!",
-            "subtitle": "Get yours!",
+            "title": "RADIANT",
+            "subtitle": "New Reverse Radiance Mask",
+            "button_text": "SHOP NOW",
+            "button_link": "",
+            "text_align": "left",
+            "text_align_mobile": "center",
+            "padding_x_desktop": 95,
+            "star_text_color": "#000000",
+            "star_color": "#000000",
+            "show_stars": true,
+            "star_text": "6,850+ 5 Star Reviews",
+            "star_layout_mobile": "column"
+          }
+        },
+        "slide_hRXBdq": {
+          "type": "slide",
+          "settings": {
+            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.08_PM_1_1.png",
+            "title": "CLEAR",
+            "subtitle": "New Unblemish Clarifying Mask",
+            "button_text": "SHOP NOW",
+            "button_link": "",
+            "text_align": "left",
+            "text_align_mobile": "center",
+            "padding_x_desktop": 95,
+            "star_text_color": "#000000",
+            "star_color": "#000000",
+            "show_stars": true,
+            "star_text": "6,850+ 5 Star Reviews",
+            "star_layout_mobile": "column"
+          }
+        },
+        "slide_bk8K7z": {
+          "type": "slide",
+          "settings": {
+            "bg_desktop": "shopify://shop_images/WhatsApp_Image_2025-07-20_at_9.50.07_PM_1.png",
+            "title": "CALM",
+            "subtitle": "New Soothe Rescue Mask",
             "button_text": "SHOP NOW",
             "button_link": "",
             "text_align": "left",
@@ -53,7 +89,9 @@
       },
       "block_order": [
         "slide_L64iaU",
-        "slide_zHGKCF"
+        "slide_zHGKCF",
+        "slide_hRXBdq",
+        "slide_bk8K7z"
       ],
       "name": "C BG Slider",
       "settings": {
@@ -109,35 +147,36 @@
         "sticker_BEqgVy": {
           "type": "sticker",
           "settings": {
-            "image": "shopify://shop_images/Frame_1618873311.png",
-            "link": ""
+            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_1_1.png",
+            "link": "",
+            "corner_image": "shopify://shop_images/Group_10462.png"
           }
         },
         "sticker_VrDNPP": {
           "type": "sticker",
           "settings": {
-            "image": "shopify://shop_images/Frame_1618873371.png",
+            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_2_1.png",
             "link": ""
           }
         },
         "sticker_8xLeXB": {
           "type": "sticker",
           "settings": {
-            "image": "shopify://shop_images/image_91.png",
+            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_3.png",
             "link": ""
           }
         },
         "sticker_x6PEhn": {
           "type": "sticker",
           "settings": {
-            "image": "shopify://shop_images/image_92.png",
+            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.20_PM_2.png",
             "link": ""
           }
         },
         "sticker_TVDnPA": {
           "type": "sticker",
           "settings": {
-            "image": "shopify://shop_images/image_93.png",
+            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.20_PM_1_1.png",
             "link": ""
           }
         }
@@ -177,7 +216,7 @@
         "button_2_link": "",
         "arrow_color": "#121212",
         "arrow_font_size": 32,
-        "enable_sticker_movement": false,
+        "enable_sticker_movement": true,
         "stickers_start_tilted": true
       }
     }
