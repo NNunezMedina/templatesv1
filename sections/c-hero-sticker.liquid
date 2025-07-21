@@ -4,13 +4,17 @@
   }
 
   .c-background-box-section__wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 500px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  min-height: 550px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; /* Añadir */
+  justify-content: center; /* Centra horizontal */
+  align-items: center; /* Centra vertical */
   }
+
 
   @media screen and (max-width: 768px) {
     .c-background-box-section__wrapper {
@@ -25,22 +29,21 @@
   }
 
   .c-background-box-section__box {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    right: 10%;
-    padding: 2rem;
-    background-color: {{ section.settings.box_bg_color }};
-    border-style: solid;
-    border-color: {{ section.settings.border_color }};
-    border-top-width: {{ section.settings.border_top_width }}px;
-    border-right-width: {{ section.settings.border_right_width }}px;
-    border-bottom-width: {{ section.settings.border_bottom_width }}px;
-    border-left-width: {{ section.settings.border_left_width }}px;
-    border-radius: {{ section.settings.border_radius }}px;
-    color: black;
-    z-index: 2;
-  }
+  position: relative; /* ← Ya no uses absolute */
+  padding: 2rem;
+  background-color: {{ section.settings.box_bg_color }};
+  border-style: solid;
+  border-color: {{ section.settings.border_color }};
+  border-top-width: {{ section.settings.border_top_width }}px;
+  border-right-width: {{ section.settings.border_right_width }}px;
+  border-bottom-width: {{ section.settings.border_bottom_width }}px;
+  border-left-width: {{ section.settings.border_left_width }}px;
+  border-radius: {{ section.settings.border_radius }}px;
+  color: black;
+  z-index: 2;
+  max-width: 1200px; /* o el ancho que prefieras */
+  width: 90%;
+}
 
   .c-box-inner {
     display: flex;
@@ -54,18 +57,11 @@
   }
 
   .c-box-left {
-    text-align: {{ section.settings.text_align }};
-    display: flex;
-    flex-direction: column;
-    justify-content: {{ section.settings.content_vertical_align }};
-    {% if section.settings.text_align == 'left' %}
-      align-items: flex-start;
-    {% elsif section.settings.text_align == 'right' %}
-      align-items: flex-end;
-    {% else %}
-      align-items: center;
-    {% endif %}
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: {{ section.settings.content_vertical_align }};
+  align-items: {{ section.settings.content_horizontal_align }};
+}
 
   .c-box-left h2 {
     font-size: 2rem;
@@ -77,13 +73,28 @@
   }
 
   .c-box-buttons a {
+    display: flex;
+    gap:10px;
+  }
+
+  .c-box-buttons a {
     display: inline-block;
-    margin-right: 10px;
     padding: 0.5rem 1rem;
     background: black;
     color: white;
     text-decoration: none;
   }
+
+  .c-box-content {
+    text-align: {{ section.settings.text_align }};
+  }
+
+  .c-box-content h2 {
+  font-size: {{ section.settings.title_font_size_desktop }}px;
+}
+.c-box-content p {
+  font-size: {{ section.settings.subtitle_font_size_desktop }}px;
+}
 
   @media screen and (min-width: 769px) {
   .c-stickers {
@@ -94,41 +105,57 @@
 
   .c-sticker {
     position: absolute;
-    width: 160px;
+    width: 110px;
     height: auto;
   }
 
   .c-sticker-1 {
     top: 10px;
     left: 5%;
+    transition: transform 0.3s ease;
   }
 
   .c-sticker-2 {
     top: 10px;
     right: 5%;
+    transition: transform 0.3s ease;
   }
 
   .c-sticker-3 {
     top: 25%;
     left: 50%;
     transform: translateX(-50%);
+    transition: transform 0.3s ease;
   }
 
   .c-sticker-4 {
     bottom: 10px;
     left: 10%;
+    transition: transform 0.3s ease;
   }
 
   .c-sticker-5 {
     bottom: 10px;
     right: 10%;
+    transition: transform 0.3s ease;
   }
 
-  .c-sticker img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+    .c-sticker:hover {
+  transform: translateY(-10px);
+}
+
+  .c-sticker-3:hover {
+  transform: translateX(-50%) translateY(-10px);
+}
+
+   .c-sticker img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center;
+  transition: none !important;
+}
+
 }
 
   /* MOBILE Slider */
@@ -144,8 +171,9 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     width: 100%;
-    height: 250px;
+    height: 300px; 
     scrollbar-width: none;
+    overflow-y: hidden;
   }
 
   .c-stickers-track::-webkit-scrollbar {
@@ -163,9 +191,10 @@
   }
 
   .c-sticker-slider-wrapper .c-sticker img {
-    width: 100%;
+    width: 60%;
     height: auto;
     object-fit: contain;
+    position: absolute;
   }
 
   .sticker-arrows {
@@ -207,8 +236,8 @@
     .sticker-arrow {
       background: none;
       border: none;
-      font-size: 2rem;
-      color: white;
+      font-size: {{ section.settings.arrow_font_size }}px;
+      color: {{ section.settings.arrow_color }};
       cursor: pointer;
       pointer-events: auto;
     }
@@ -239,6 +268,21 @@
     .c-box-right {
       width: 100%;
     }
+
+    .c-box-content {
+    text-align: {{ section.settings.text_align_mobile }};
+  }
+  .c-box-left {
+  width:100%;
+  }
+
+.c-box-content h2 {
+    font-size: {{ section.settings.title_font_size_mobile }}px;
+  }
+  .c-box-content p {
+    font-size: {{ section.settings.subtitle_font_size_mobile }}px;
+  }
+
   }
 </style>
 
@@ -248,15 +292,17 @@
     <div class="c-background-box-section__box">
       <div class="c-box-inner">
         <div class="c-box-left">
+          <div class="c-box-content">
           <h2>{{ section.settings.title }}</h2>
           <p>{{ section.settings.subtitle }}</p>
           <div class="c-box-buttons">
             <a href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
             <a href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
           </div>
+          </div>
         </div>
         <div class="c-box-right">
-          <div class="c-stickers">
+          <div id="rotating-stickers" class="c-stickers">
             {% for block in section.blocks %}
                 <div class="c-sticker c-sticker-{{ forloop.index }}">
                 <a href="{{ block.settings.link }}">
@@ -356,6 +402,43 @@
   });
 </script>
 
+{% if section.settings.enable_sticker_movement %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("rotating-stickers");
+      if (!container) return;
+
+      const stickers = container.querySelectorAll(".c-sticker img");
+
+      stickers.forEach((img, index) => {
+        let angle = 8;
+        let direction = (index % 2 === 0) ? 1 : -1;
+
+        setInterval(() => {
+          direction *= -1;
+          img.style.transform = `rotate(${direction * angle}deg)`;
+        }, 600);
+      });
+    });
+  </script>
+{% elsif section.settings.stickers_start_tilted %}
+  <style>
+    #rotating-stickers .c-sticker:nth-child(odd) img {
+      transform: rotate(8deg);
+    }
+    #rotating-stickers .c-sticker:nth-child(even) img {
+      transform: rotate(-8deg);
+    }
+  </style>
+{% else %}
+  <style>
+    #rotating-stickers .c-sticker img {
+      transform: rotate(0deg);
+    }
+  </style>
+{% endif %}
+
+
 {% schema %}
 {
   "name": "C HERO STICKER",
@@ -448,16 +531,38 @@
   ]
 },
     {
+  "type": "select",
+  "id": "text_align",
+  "label": "Alineación del texto dentro del contenido",
+  "default": "left",
+  "options": [
+    { "value": "left", "label": "Izquierda" },
+    { "value": "center", "label": "Centro" },
+    { "value": "right", "label": "Derecha" }
+  ]
+},
+{
+  "type": "select",
+  "id": "text_align_mobile",
+  "label": "Alineación del texto en mobile",
+  "default": "center",
+  "options": [
+    { "value": "left", "label": "Izquierda" },
+    { "value": "center", "label": "Centro" },
+    { "value": "right", "label": "Derecha" }
+  ]
+},
+        {
         "type": "select",
-        "id": "text_align",
-        "label": "Alineación del contenido",
-        "default": "left",
+        "id": "content_horizontal_align",
+        "label": "Alineación horizontal del contenido",
+        "default": "center",
         "options": [
-            { "value": "left", "label": "Izquierda" },
-            { "value": "center", "label": "Centro" },
-            { "value": "right", "label": "Derecha" }
+          { "value": "flex-start", "label": "Izquierda" },
+          { "value": "center", "label": "Centro" },
+          { "value": "flex-end", "label": "Derecha" }
         ]
-        },
+      },
     {
       "type": "text",
       "id": "title",
@@ -469,6 +574,42 @@
       "id": "subtitle",
       "label": "Subtítulo",
       "default": "Subtítulo de ejemplo"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "label": "Tamaño del título (desktop)",
+      "min": 12,
+      "max": 80,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Tamaño del título (mobile)",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_desktop",
+      "label": "Tamaño del subtítulo (desktop)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_mobile",
+      "label": "Tamaño del subtítulo (mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 14
     },
     {
       "type": "text",
@@ -491,7 +632,34 @@
       "type": "url",
       "id": "button_2_link",
       "label": "Enlace del botón 2"
-    }
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Color de flechas del slider",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "arrow_font_size",
+      "label": "Tamaño de fuente de las flechas",
+      "min": 12,
+      "max": 64,
+      "step": 1,
+      "default": 32
+    },
+    {
+  "type": "checkbox",
+  "id": "enable_sticker_movement",
+  "label": "Activar movimiento de stickers",
+  "default": false
+},
+{
+  "type": "checkbox",
+  "id": "stickers_start_tilted",
+  "label": "Mostrar stickers inclinados si no hay movimiento",
+  "default": false
+}
   ],
   "blocks": [
     {
@@ -507,7 +675,7 @@
           "type": "url",
           "id": "link",
           "label": "Enlace del sticker"
-        }
+        },
       ]
     }
   ],
