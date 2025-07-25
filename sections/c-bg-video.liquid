@@ -98,6 +98,38 @@
   color: {{ section.settings.button_text_color_hover }};
 }
 
+#c-bg-video-{{ section.id }} .c-bg-video-controls {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  z-index: 3;
+}
+
+#c-bg-video-{{ section.id }} .video-toggle {
+  background-color: rgba(
+  {{ section.settings.play_pause_button_bg_color | color_extract: 'red' }},
+  {{ section.settings.play_pause_button_bg_color | color_extract: 'green' }},
+  {{ section.settings.play_pause_button_bg_color | color_extract: 'blue' }},
+  {{ section.settings.play_pause_button_bg_opacity }}
+);
+  color: {{ section.settings.pause_icon_color }};
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#c-bg-video-{{ section.id }} .video-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
 @media screen and (max-width: 767px) {
   #c-bg-video-{{ section.id }} .c-bg-video-content {
     bottom: 3%;
@@ -151,8 +183,40 @@
         </a>
       {% endif %}
     </div>
-  </div>
+    <div class="c-bg-video-controls">
+    <button class="video-toggle" aria-label="Reproducir o pausar video">
+      &#10074;&#10074; <!-- Pausa por defecto -->
+    </button>
+    </div>
+    </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const section = document.querySelector('#c-bg-video-{{ section.id }}');
+    const toggleBtn = section.querySelector('.video-toggle');
+    const videoDesktop = section.querySelector('.video-desktop');
+    const videoMobile = section.querySelector('.video-mobile');
+
+    let isPlaying = true;
+
+    toggleBtn.addEventListener('click', function () {
+  const currentVideo = window.innerWidth > 767 ? videoDesktop : videoMobile;
+
+  if (isPlaying) {
+    currentVideo.pause();
+    toggleBtn.innerHTML = '&#9658;'; // ▶
+    toggleBtn.style.color = '{{ section.settings.play_icon_color }}';
+  } else {
+    currentVideo.play();
+    toggleBtn.innerHTML = '&#10074;&#10074;'; // ‖
+    toggleBtn.style.color = '{{ section.settings.pause_icon_color }}';
+  }
+
+  isPlaying = !isPlaying;
+  });
+  });
+</script>
 
 {% schema %}
 {
@@ -404,6 +468,37 @@
     "id": "button_text_color_hover",
     "label": "Color del texto del botón (hover)",
     "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Botón Play/Pausa"
+    },
+    {
+      "type": "color",
+      "id": "play_pause_button_bg_color",
+      "label": "Color de fondo del botón",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "play_pause_button_bg_opacity",
+      "label": "Opacidad del fondo del botón",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.6
+    },
+    {
+      "type": "color",
+      "id": "play_icon_color",
+      "label": "Color del ícono Play",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pause_icon_color",
+      "label": "Color del ícono Pausa",
+      "default": "#ffffff"
     }
   ],
   "presets": [

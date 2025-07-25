@@ -11,44 +11,43 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "c_marquee_header_eQ6D43": {
-      "type": "c-marquee-header",
-      "name": "C Marquee Header",
-      "settings": {
-        "text_one": "Envío gratis a todo el Perú",
-        "text_two": "Descuento del 15% por apertura",
-        "text_three": "Compra segura con garantía",
-        "bg_color": "#ffd5f7",
-        "text_color": "#000000",
-        "scroll_speed": 60,
-        "text_spacing": 24,
-        "margin_top": 2,
-        "margin_bottom": 2,
-        "font_size": 14
-      }
-    },
-    "announcement-bar": {
-      "type": "announcement-bar",
+    "c_text_ticker_wDJwyA": {
+      "type": "c-text-ticker",
       "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
+        "text_block_whxGNT": {
+          "type": "text_block",
           "settings": {
-            "text": "Welcome to our store",
-            "link": ""
+            "text": "Eres nuevo? Obten 15% en tu primera orden.",
+            "button_label": "Registrate",
+            "button_url": ""
+          }
+        },
+        "text_block_8KcQmg": {
+          "type": "text_block",
+          "settings": {
+            "text": "Texto destacado de ejemplo",
+            "button_label": "",
+            "button_url": ""
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "text_block_whxGNT",
+        "text_block_8KcQmg"
       ],
+      "name": "C Text Ticker",
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "toggle_icon_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_hover_bg_color": "#ffffff",
+        "button_hover_text_color": "#000000",
+        "text_font_size_desktop": 1.2,
+        "text_font_size_mobile": 1.2,
+        "button_font_size_desktop": 1.2,
+        "button_font_size_mobile": 1.2
       }
     },
     "header": {
@@ -72,8 +71,7 @@
     }
   },
   "order": [
-    "c_marquee_header_eQ6D43",
-    "announcement-bar",
+    "c_text_ticker_wDJwyA",
     "header"
   ]
 }

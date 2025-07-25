@@ -42,7 +42,11 @@
         "button_border_width": 1,
         "button_radius": 20,
         "button_background_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
+        "button_text_color_hover": "#000000",
+        "play_pause_button_bg_color": "#ffffff",
+        "play_pause_button_bg_opacity": 0.6,
+        "play_icon_color": "#121212",
+        "pause_icon_color": "#121212"
       }
     },
     "featured_collection": {
