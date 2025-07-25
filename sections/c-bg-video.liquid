@@ -1,0 +1,415 @@
+<style>
+  #c-bg-video-{{ section.id }} .c-bg-video-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1440 / 700; /* desktop por defecto */
+}
+
+#c-bg-video-{{ section.id }} .video-desktop,
+#c-bg-video-{{ section.id }} .video-mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+#c-bg-video-{{ section.id }} .video-desktop {
+  display: block;
+}
+
+#c-bg-video-{{ section.id }} .video-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  #c-bg-video-{{ section.id }} .video-desktop {
+    display: none !important;
+  }
+  #c-bg-video-{{ section.id }} .video-mobile {
+    display: block !important;
+  }
+
+  #c-bg-video-{{ section.id }} .c-bg-video-wrapper {
+    aspect-ratio: 375 / 524;
+  }
+}
+
+#c-bg-video-{{ section.id }} .c-bg-video-content {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  z-index: 2;
+  text-align: left;
+  color: white;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 662px;
+  display: flex;
+  flex-direction: column;
+  gap: {{ section.settings.gap_desktop }}rem;
+}
+
+#c-bg-video-{{ section.id }} .heading-main {
+  font-size: {{ section.settings.heading_main_font_size_desktop }}rem;
+  font-weight: {{ section.settings.heading_main_font_weight }};
+  color: {{ section.settings.heading_main_color }};
+  line-height: {{ section.settings.heading_main_font_size_desktop }}rem;
+  margin: 0;
+}
+
+#c-bg-video-{{ section.id }} .subheading-top {
+  font-size: {{ section.settings.subheading_top_font_size_desktop }}rem;
+  font-weight: {{ section.settings.subheading_top_font_weight }};
+}
+
+#c-bg-video-{{ section.id }} .subheading-bottom {
+  font-size: {{ section.settings.subheading_bottom_font_size_desktop }}rem;
+  font-weight: {{ section.settings.subheading_bottom_font_weight }};
+  color: {{ section.settings.subheading_bottom_color }};
+  line-height: {{ section.settings.subheading_bottom_font_size_desktop }}rem;
+  max-width: 500px;
+  margin: 0;
+}
+
+#c-bg-video-{{ section.id }} .btn-primary {
+  display: inline-flex;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  font-size: {{ section.settings.button_font_size_desktop }}rem;
+  font-weight: {{ section.settings.button_font_weight }};
+  background-color: {{ section.settings.button_background_color }};
+  color: {{ section.settings.button_text_color }};
+  border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+  border-radius: {{ section.settings.button_radius }}px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  max-width: max-content;
+  margin-top:4px;
+}
+
+#c-bg-video-{{ section.id }} .btn-primary:hover {
+  background-color: {{ section.settings.button_background_color_hover }};
+  color: {{ section.settings.button_text_color_hover }};
+}
+
+@media screen and (max-width: 767px) {
+  #c-bg-video-{{ section.id }} .c-bg-video-content {
+    bottom: 3%;
+    left: 5%;
+    padding: 1rem;
+    gap: {{ section.settings.gap_mobile }}rem;
+  }
+
+  #c-bg-video-{{ section.id }} .subheading-top {
+      font-size: {{ section.settings.subheading_top_font_size_mobile }}rem;
+      line-height: {{ section.settings.subheading_top_font_size_mobile }}rem;
+    }
+
+    #c-bg-video-{{ section.id }} .heading-main {
+    font-size: {{ section.settings.heading_main_font_size_mobile }}rem;
+    line-height: {{ section.settings.heading_main_font_size_mobile }}rem;
+  }
+
+  #c-bg-video-{{ section.id }} .subheading-bottom {
+    font-size: {{ section.settings.subheading_bottom_font_size_mobile }}rem;
+  }
+
+  #c-bg-video-{{ section.id }} .btn-primary {
+    font-size: {{ section.settings.button_font_size_mobile }}rem;
+  }
+}
+
+</style>
+
+<section class="c-bg-video-section" id="c-bg-video-{{ section.id }}">
+  <div class="c-bg-video-wrapper">
+    <video 
+      class="video-desktop" 
+      autoplay muted loop playsinline 
+      src="{{ section.settings.video_desktop.sources[0].url }}">
+    </video>
+    <video 
+      class="video-mobile" 
+      autoplay muted loop playsinline 
+      src="{{ section.settings.video_mobile.sources[0].url }}">
+    </video>
+
+    <div class="c-bg-video-content">
+      <span class="subheading-top">{{ section.settings.subheading_top }}</span>
+      <h1 class="heading-main">{{ section.settings.heading_main }}</h1>
+      <p class="subheading-bottom">{{ section.settings.subheading_bottom }}</p>
+
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_url }}" class="btn-primary">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "C BG VIDEO",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video_desktop",
+      "label": "Video de fondo (Desktop)"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video de fondo (Mobile)"
+    },
+    {
+    "type": "range",
+    "id": "gap_desktop",
+    "label": "Separación entre elementos (Desktop)",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 1.0
+    },
+    {
+    "type": "range",
+    "id": "gap_mobile",
+    "label": "Separación entre elementos (Mobile)",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.8
+    },
+    {
+      "type": "text",
+      "id": "subheading_top",
+      "label": "Subtítulo superior",
+      "default": "OLAPLEX Nº 7 + Nº 6"
+    },
+    {
+    "type": "range",
+    "id": "subheading_top_font_size_desktop",
+    "label": "Tamaño de fuente subtítulo superior (Desktop)",
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.9
+    },
+    {
+    "type": "range",
+    "id": "subheading_top_font_size_mobile",
+    "label": "Tamaño de fuente subtítulo superior (Mobile)",
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.8
+    },
+    {
+    "type": "range",
+    "id": "subheading_top_font_weight",
+    "label": "Peso de fuente subtítulo superior",
+    "min": 300,
+    "max": 900,
+    "step": 100,
+    "default": 600
+    },
+    {
+  "type": "header",
+  "content": "Heading Title"
+    },
+    {
+    "type": "text",
+    "id": "heading_main",
+    "label": "Texto del título principal",
+    "default": "Repara. Protege. Brilla."
+    },
+    {
+    "type": "range",
+    "id": "heading_main_font_size_desktop",
+    "label": "Tamaño de fuente (Desktop)",
+    "min": 1.5,
+    "max": 6,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 2.8
+    },
+    {
+    "type": "range",
+    "id": "heading_main_font_size_mobile",
+    "label": "Tamaño de fuente (Mobile)",
+    "min": 1,
+    "max": 4,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 2.2
+    },
+    {
+    "type": "range",
+    "id": "heading_main_font_weight",
+    "label": "Peso de fuente",
+    "min": 300,
+    "max": 900,
+    "step": 100,
+    "default": 600
+    },
+    {
+    "type": "color",
+    "id": "heading_main_color",
+    "label": "Color del título principal",
+    "default": "#ffffff"
+    },
+    {
+  "type": "header",
+  "content": "Subtítulo Inferior"
+    },
+    {
+    "type": "text",
+    "id": "subheading_bottom",
+    "label": "Texto del subtítulo inferior",
+    "default": "Descubre el poder de OLAPLEX con nuestros productos estrella."
+    },
+    {
+    "type": "range",
+    "id": "subheading_bottom_font_size_desktop",
+    "label": "Tamaño de fuente (Desktop)",
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 1.0
+    },
+    {
+    "type": "range",
+    "id": "subheading_bottom_font_size_mobile",
+    "label": "Tamaño de fuente (Mobile)",
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.9
+    },
+    {
+    "type": "range",
+    "id": "subheading_bottom_font_weight",
+    "label": "Peso de fuente",
+    "min": 300,
+    "max": 900,
+    "step": 100,
+    "default": 400
+    },
+    {
+    "type": "color",
+    "id": "subheading_bottom_color",
+    "label": "Color del subtítulo inferior",
+    "default": "#ffffff"
+    },
+    {
+  "type": "header",
+  "content": "Botón"
+    },
+    {
+    "type": "text",
+    "id": "button_label",
+    "label": "Texto del botón",
+    "default": "Ver productos"
+    },
+    {
+    "type": "url",
+    "id": "button_url",
+    "label": "URL del botón"
+    },
+    {
+    "type": "range",
+    "id": "button_font_weight",
+    "label": "Peso de fuente del botón",
+    "min": 300,
+    "max": 900,
+    "step": 100,
+    "default": 500
+    },
+    {
+    "type": "range",
+    "id": "button_font_size_desktop",
+    "label": "Tamaño de fuente del botón (Desktop)",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.9
+    },
+    {
+    "type": "range",
+    "id": "button_font_size_mobile",
+    "label": "Tamaño de fuente del botón (Mobile)",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "rem",
+    "default": 0.8
+    },
+    {
+    "type": "color",
+    "id": "button_background_color",
+    "label": "Color de fondo del botón",
+    "default": "#ffffff"
+    },
+    {
+    "type": "color",
+    "id": "button_text_color",
+    "label": "Color del texto del botón",
+    "default": "#000000"
+    },
+    {
+    "type": "color",
+    "id": "button_border_color",
+    "label": "Color del borde del botón",
+    "default": "#000000"
+    },
+    {
+    "type": "range",
+    "id": "button_border_width",
+    "label": "Espesor del borde (px)",
+    "min": 0,
+    "max": 5,
+    "step": 1,
+    "default": 0
+    },
+    {
+    "type": "range",
+    "id": "button_radius",
+    "label": "Border radius (px)",
+    "min": 0,
+    "max": 50,
+    "step": 1,
+    "default": 4
+    },
+    {
+    "type": "color",
+    "id": "button_background_color_hover",
+    "label": "Color de fondo del botón (hover)",
+    "default": "#f1f1f1"
+    },
+    {
+    "type": "color",
+    "id": "button_text_color_hover",
+    "label": "Color del texto del botón (hover)",
+    "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "C BG VIDEO"
+    }
+  ]
+}
+{% endschema %}

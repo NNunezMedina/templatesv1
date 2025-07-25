@@ -9,100 +9,40 @@
  */
 {
   "sections": {
-    "c_bg_slider_K9LfXr": {
-      "type": "c-bg-slider",
-      "blocks": {
-        "slide_L64iaU": {
-          "type": "slide",
-          "settings": {
-            "bg_desktop": "shopify://shop_images/Sin_titulo-1.png",
-            "bg_mobile": "shopify://shop_images/celular1.png",
-            "title": "Smooth Summer Freeze + Boost Shine",
-            "subtitle": "For Hair That Defies Summer Heat and Humidity",
-            "button_text": "SHOP NOW",
-            "button_link": "",
-            "text_align": "left",
-            "text_align_mobile": "center",
-            "padding_x_desktop": 95,
-            "star_text_color": "#121212",
-            "star_color": "#121212",
-            "show_stars": false,
-            "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column",
-            "star_font_size": 16,
-            "star_font_weight": "600"
-          }
-        },
-        "slide_zHGKCF": {
-          "type": "slide",
-          "settings": {
-            "bg_desktop": "shopify://shop_images/fondo_2.png",
-            "bg_mobile": "shopify://shop_images/celular2.png",
-            "title": "Build Your Healthy  Skin Routine",
-            "subtitle": "For The Best Glowing Skin For Summer",
-            "button_text": "SHOP NOW",
-            "button_link": "",
-            "text_align": "left",
-            "text_align_mobile": "center",
-            "padding_x_desktop": 95,
-            "star_text_color": "#000000",
-            "star_color": "#000000",
-            "show_stars": false,
-            "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column",
-            "star_font_size": 16,
-            "star_font_weight": "600"
-          }
-        },
-        "slide_hRXBdq": {
-          "type": "slide",
-          "settings": {
-            "bg_desktop": "shopify://shop_images/fondo_3.png",
-            "bg_mobile": "shopify://shop_images/lalala.png",
-            "title": "Healthy Skin Defies Destination",
-            "subtitle": "Smootheness, Moisturazation & Elasticity",
-            "button_text": "SHOP NOW",
-            "button_link": "",
-            "text_align": "left",
-            "text_align_mobile": "center",
-            "padding_x_desktop": 95,
-            "star_text_color": "#000000",
-            "star_color": "#000000",
-            "show_stars": false,
-            "star_text": "6,850+ 5 Star Reviews",
-            "star_layout_mobile": "column",
-            "star_font_size": 16,
-            "star_font_weight": "600"
-          }
-        }
-      },
-      "block_order": [
-        "slide_L64iaU",
-        "slide_zHGKCF",
-        "slide_hRXBdq"
-      ],
-      "name": "C BG Slider",
+    "c_bg_video_9DrAxJ": {
+      "type": "c-bg-video",
+      "name": "C BG VIDEO",
       "settings": {
-        "arrow_color": "#121212",
-        "dot_color": "#f3f3f3",
-        "dot_active_color": "#242833",
-        "button_bg_color": "#fefaf7",
-        "button_text_color": "#121212",
-        "button_radius": 24,
-        "button_bg_hover": "#000000",
-        "button_text_hover": "#fefaf7",
-        "title_font_size_desktop": 48,
-        "title_font_size_mobile": 20,
-        "subtitle_font_size_desktop": 18,
-        "subtitle_font_size_mobile": 16,
-        "autoplay": true,
-        "autoplay_speed": 2,
-        "controls_top_desktop": 40,
-        "controls_top_mobile": 35,
-        "subtitle_color": "#121212",
-        "title_color": "#121212",
-        "title_font_weight": "700",
-        "button_border_color": "#000000"
+        "video_desktop": "shopify://files/videos/WhatsApp Video 2025-07-24 at 5.49.09 PM.mp4",
+        "video_mobile": "shopify://files/videos/WhatsApp Video 2025-07-24 at 5.49.09 PM.mp4",
+        "gap_desktop": 0.5,
+        "gap_mobile": 0.6,
+        "subheading_top": "MARCAS ORIGINALES DE SKINCARE",
+        "subheading_top_font_size_desktop": 1.7,
+        "subheading_top_font_size_mobile": 1.3,
+        "subheading_top_font_weight": 700,
+        "heading_main": "Piel Radiante + Hidratación Profunda",
+        "heading_main_font_size_desktop": 6,
+        "heading_main_font_size_mobile": 3.1,
+        "heading_main_font_weight": 800,
+        "heading_main_color": "#ffffff",
+        "subheading_bottom": "Tu rutina facial con resultados visibles",
+        "subheading_bottom_font_size_desktop": 2.2,
+        "subheading_bottom_font_size_mobile": 1.4,
+        "subheading_bottom_font_weight": 400,
+        "subheading_bottom_color": "#ffffff",
+        "button_label": "VER PRODUCTOS",
+        "button_url": "",
+        "button_font_weight": 500,
+        "button_font_size_desktop": 1.5,
+        "button_font_size_mobile": 1.5,
+        "button_background_color": "rgba(0,0,0,0)",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#ffffff",
+        "button_border_width": 1,
+        "button_radius": 20,
+        "button_background_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "featured_collection": {
@@ -214,7 +154,7 @@
     }
   },
   "order": [
-    "c_bg_slider_K9LfXr",
+    "c_bg_video_9DrAxJ",
     "featured_collection",
     "c_hero_sticker_AEMcNW"
   ]
