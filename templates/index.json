@@ -49,117 +49,57 @@
         "pause_icon_color": "#121212"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
-    "c_hero_sticker_AEMcNW": {
-      "type": "c-hero-sticker",
+    "coleccion_skincare_PW76xj": {
+      "type": "coleccion-skincare",
       "blocks": {
-        "sticker_BEqgVy": {
-          "type": "sticker",
+        "featured_collection_yzhg9h": {
+          "type": "featured_collection",
           "settings": {
-            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_1_1.png",
-            "link": "",
-            "corner_image": "shopify://shop_images/Group_10462.png"
+            "collection": "bestsellers-1"
           }
         },
-        "sticker_VrDNPP": {
-          "type": "sticker",
+        "featured_collection_fkm9AF": {
+          "type": "featured_collection",
           "settings": {
-            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_2_1.png",
-            "link": ""
+            "collection": "makeup"
           }
         },
-        "sticker_8xLeXB": {
-          "type": "sticker",
+        "featured_collection_A8XkVf": {
+          "type": "featured_collection",
           "settings": {
-            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.19_PM_3.png",
-            "link": ""
+            "collection": "serums"
           }
         },
-        "sticker_x6PEhn": {
-          "type": "sticker",
+        "featured_collection_7P9zVn": {
+          "type": "featured_collection",
           "settings": {
-            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.20_PM_2.png",
-            "link": ""
-          }
-        },
-        "sticker_TVDnPA": {
-          "type": "sticker",
-          "settings": {
-            "image": "shopify://shop_images/Made_with_insMind-WhatsApp_Image_2025-07-20_at_9.50.20_PM_1_1.png",
-            "link": ""
+            "collection": "bestsellers"
           }
         }
       },
       "block_order": [
-        "sticker_BEqgVy",
-        "sticker_VrDNPP",
-        "sticker_8xLeXB",
-        "sticker_x6PEhn",
-        "sticker_TVDnPA"
+        "featured_collection_yzhg9h",
+        "featured_collection_fkm9AF",
+        "featured_collection_A8XkVf",
+        "featured_collection_7P9zVn"
       ],
-      "name": "C HERO STICKERS",
+      "name": "Coleccion Skincare",
       "settings": {
-        "bg_image_desktop": "shopify://shop_images/ChatGPT_Image_20_jul_2025_11_44_26_a.m..png",
-        "bg_image_mobile": "shopify://shop_images/ChatGPT_Image_20_jul_2025_12_26_17_p.m..png",
-        "box_bg_color": "#fffaed",
-        "border_color": "#121212",
-        "border_width": 2,
-        "border_radius": 20,
-        "border_top_width": 2,
-        "border_right_width": 8,
-        "border_bottom_width": 8,
-        "border_left_width": 2,
-        "content_vertical_align": "center",
-        "text_align": "left",
-        "text_align_mobile": "center",
-        "content_horizontal_align": "center",
-        "title": "Texto de ejemplo",
-        "subtitle": "Subtítulo de ejemplo",
-        "title_font_size_desktop": 48,
-        "title_font_size_mobile": 24,
-        "subtitle_font_size_desktop": 28,
-        "subtitle_font_size_mobile": 16,
-        "button_1_text": "SHOP NOW",
-        "button_1_link": "",
-        "button_2_text": "VIEW MORE",
-        "button_2_link": "",
-        "arrow_color": "#121212",
-        "arrow_font_size": 32,
-        "enable_sticker_movement": true,
-        "stickers_start_tilted": true
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "c_bg_video_9DrAxJ",
-    "featured_collection",
-    "c_hero_sticker_AEMcNW"
+    "coleccion_skincare_PW76xj"
   ]
 }
