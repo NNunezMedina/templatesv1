@@ -49,57 +49,51 @@
         "pause_icon_color": "#121212"
       }
     },
-    "coleccion_skincare_PW76xj": {
-      "type": "coleccion-skincare",
+    "c_collection_list_JfydDa": {
+      "type": "c-collection-list",
       "blocks": {
-        "featured_collection_yzhg9h": {
-          "type": "featured_collection",
+        "collection_pBjnaV": {
+          "type": "collection",
           "settings": {
             "collection": "bestsellers-1"
           }
         },
-        "featured_collection_fkm9AF": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "makeup"
-          }
-        },
-        "featured_collection_A8XkVf": {
-          "type": "featured_collection",
+        "collection_FraKhP": {
+          "type": "collection",
           "settings": {
             "collection": "serums"
           }
         },
-        "featured_collection_7P9zVn": {
-          "type": "featured_collection",
+        "collection_jGfrim": {
+          "type": "collection",
+          "settings": {
+            "collection": "makeup"
+          }
+        },
+        "collection_AwYfep": {
+          "type": "collection",
           "settings": {
             "collection": "bestsellers"
           }
         }
       },
       "block_order": [
-        "featured_collection_yzhg9h",
-        "featured_collection_fkm9AF",
-        "featured_collection_A8XkVf",
-        "featured_collection_7P9zVn"
+        "collection_pBjnaV",
+        "collection_FraKhP",
+        "collection_jGfrim",
+        "collection_AwYfep"
       ],
-      "name": "Coleccion Skincare",
+      "custom_css": [],
+      "name": "C - Lista de Colecciones",
       "settings": {
-        "title": "Featured collection",
-        "heading_size": "h1",
-        "image_ratio": "adapt",
-        "columns_desktop": 4,
-        "color_scheme": "",
-        "show_view_all": true,
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "title": "Categorias",
+        "mobile_layout": "slider",
+        "columns_mobile": "1"
       }
     }
   },
   "order": [
     "c_bg_video_9DrAxJ",
-    "coleccion_skincare_PW76xj"
+    "c_collection_list_JfydDa"
   ]
 }

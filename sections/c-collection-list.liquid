@@ -1,0 +1,161 @@
+<style>
+  .c-collection-list-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .c-collection-item {
+    position: relative;
+    flex: 1 0 calc(25% - 1.5px); /* 4 items con gap de 2px en total */
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .c-collection-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .c-collection-title {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    z-index: 2;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+
+  .c-section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .c-collection-list-wrapper.columns-1 .c-collection-item {
+      flex: 1 0 100%;
+    }
+    .c-collection-list-wrapper.columns-2 .c-collection-item {
+      flex: 1 0 49%;
+    }
+
+    .c-collection-list-wrapper.slider {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .c-collection-list-wrapper.slider .c-collection-item {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+    }
+
+    .c-collection-page-width {
+    margin:0 !important;
+    padding: 0 !important;
+    max-width:100%;
+  }
+  }
+
+  @media screen and (min-width: 750px) {
+  .c-collection-page-width {
+    margin:0 !important;
+    padding: 0 !important;
+    max-width:100%;
+  }
+}
+</style>
+
+<div class="c-collection-list-section page-width c-collection-page-width">
+  {% if section.settings.title != blank %}
+    <h2 class="c-section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+
+  {% assign layout_mobile = section.settings.mobile_layout %}
+  {% assign columns_mobile = section.settings.columns_mobile %}
+
+  {% assign wrapper_classes = 'c-collection-list-wrapper' %}
+  {% if layout_mobile == 'slider' %}
+    {% assign wrapper_classes = wrapper_classes | append: ' slider' %}
+  {% else %}
+    {% assign wrapper_classes = wrapper_classes | append: ' columns-' | append: columns_mobile %}
+  {% endif %}
+
+  <div class="{{ wrapper_classes }}">
+    {% for block in section.blocks limit: 4 %}
+      {% assign collection = collections[block.settings.collection] %}
+      {% if collection %}
+        <a href="{{ collection.url }}" class="c-collection-item">
+          <img src="{{ collection.featured_image | image_url: width: 800 }}" alt="{{ collection.title }}">
+          <span class="c-collection-title">{{ collection.title }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "C - Collection List",
+  "tag": "section",
+  "class": "c-collection-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Layout en móvil",
+      "options": [
+        { "value": "slider", "label": "Slider táctil" },
+        { "value": "1", "label": "1 columna / 4 filas" },
+        { "value": "2", "label": "2 columnas / 2 filas" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columnas en móvil (solo si no es slider)",
+      "options": [
+        { "value": "1", "label": "1 columna" },
+        { "value": "2", "label": "2 columnas" }
+      ],
+      "default": "1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Colección",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Seleccionar colección"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "C - Lista de Colecciones",
+      "category": "Personalizado"
+    }
+  ]
+}
+{% endschema %}
